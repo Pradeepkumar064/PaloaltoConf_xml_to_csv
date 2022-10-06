@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<domain type="kvm">
+	<name>PAN_Firewall_DC1</name>
+	<memory>4194304</memory>
+	<currentMemory>4194304</currentMemory>
+	<vcpu placement="static">2</vcpu>
+	<os>
+		<type arch="x86_64">hvm</type>
+		<boot dev="hd"/>
+	</os>
+	<features>
+		<acpi/>
+		<apic/>
+		<pae/>
+	</features>
+	<clock offset="utc"/>
+	<on_poweroff>destroy</on_poweroff>
+	<on_reboot>restart</on_reboot>
+	<on_crash>restart</on_crash>
+	<devices>
+		<emulator>/usr/libexec/qemu-kvm</emulator>
+		<disk type="file" device="disk">
+			<driver type="qcow2" name="qemu"/>
+			<source file="/var/lib/libvirt/images/panos-kvm.qcow2"/>
+			<target dev="vda" bus="virtio"/>
+		</disk>
+		<controller type="usb" index="0"/>
+		<controller type="ide" index="0"/>
+		<controller type="scsi" index="0"/>
+		<serial type="pty">
+			<source path="/dev/pts/1"/>
+			<target port="0"/>
+			<alias name="serial0"/>
+		</serial>
+		<console type="pty" tty="/dev/pts/1">
+			<source path="/dev/pts/1"/>
+			<target type="serial" port="0"/>
+			<alias name="serial0"/>
+		</console>
+		<input type="mouse" bus="ps2"/>
+		<graphics type="vnc" port="5900" autoport="yes"/>
+	</devices>
+</domain>
