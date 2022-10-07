@@ -1,13 +1,11 @@
 # A program to parse the Paloalto Firewall's .XML configuration file into CSV file
 
 """
-Paloalto firewall's settings/configurations can be inported into .XML format, but this format is not straightforward to many of the consumers.
-Have written a script that converts a XML file into CSV (be aware that only few important fields are considered for conversion as requested)
-
+Paloalto firewall's settings/configurations can be imported into .XML format, but this format is not straightforward to many of the consumers.
+Have written a script that converts an XML file into CSV (be aware that only a few important fields are considered for conversion as requested)
 pre-requisites:
-
-1, Modules loaded are xml and csv
-2, Install python 3.0+ to facilidate the use of "|" operator which helps in merging the dictionaries
+1, Modules loaded are XML and CSV
+2, Install python 3.0+ to facilitate the use of "|" operator which helps in merging the dictionaries
 """
 
 import csv
@@ -48,7 +46,7 @@ for graphics in root.iter('graphics'):
     result_graphics_text = graphics.text
     dict_5 = {result_graphics_tag : result_graphics_attrib['type']}
 
-#Combine dictionaries into single dictionary
+#Combine dictionaries into a single dictionary
 
 consolidated_dict = {**dict_1,**dict_2,**dict_3,**dict_4,**dict_5}
 
